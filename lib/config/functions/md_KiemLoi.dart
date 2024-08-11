@@ -224,7 +224,7 @@ KiemLoiTin(String sTin) async {
           //xien.12.23.x10.45.x10 (k bao loi nen thu tat sKieu='')
           iCapXien = 0;
           // if (  KiemTraLoiTien(x.substring(x.length-1))){
-          if (KiemTraLoiTien(x.substring(1))) {
+          if (x.length>1 && KiemTraLoiTien(x.substring(1))) {
             lst_vtLoi.add(i);
             if (!bLoiTin) {
               bLoiTin = true;
@@ -356,7 +356,7 @@ KiemLoiTin(String sTin) async {
       }
       //so tien khong duoc lien ke
       if (lst_Tin[i].substring(0, 1) == 'x') {
-        if (isNumeric(lst_Tin[i].substring(1, 2))) {
+        if (lst_Tin[i].length>2 && isNumeric(lst_Tin[i].substring(1, 2))) {
           sKieu = '';
           iKieuDanh = 0;
         }

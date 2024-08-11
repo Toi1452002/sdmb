@@ -152,7 +152,7 @@ class VBaoCaoChiTiet extends StatelessWidget {
           const TextSpan(text: '\t'),
           TextSpan(
               text: text.isNumeric
-                  ? NumberFormat('#,###').format(text.toDouble)
+                  ? text.toDouble.toString().formatDouble
                   : text,
               style: TextStyle(color: color ?? Colors.black, fontSize: 16))
         ]),

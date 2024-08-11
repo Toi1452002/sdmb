@@ -21,7 +21,7 @@ extension FormatDouble on String {
     if(isNumeric){
       String tmp = toString().toDouble.toStringAsFixed(1);
       if(tmp.lastChars(1)=='0'){
-        return NumberFormat('#,###').format(toString().toDouble);
+        return NumberFormat('#,##0').format(toString().toDouble);
       }else{
         return tmp.replaceAll('.', ',');
       }

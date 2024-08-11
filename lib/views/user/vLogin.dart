@@ -28,7 +28,7 @@ class VLogin extends StatelessWidget {
                 Text(
                   'Đăng nhập vào ứng dụng',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       color: Colors.blueGrey.shade600,
                       fontWeight: FontWeight.bold),
                 ),
@@ -58,7 +58,7 @@ class VLogin extends StatelessWidget {
                     controller.onLogin(context);
                   },
                 ),
-
+                SizedBox(height: 5),
                 TextButton(onPressed: () async {
                   Get.toNamed(vKichHoat,parameters:{'MaThietBi': getKey()});
                 }, child: const Text('Kích hoạt ứng dụng',style: TextStyle(

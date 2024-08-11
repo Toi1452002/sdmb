@@ -7,6 +7,7 @@ showLoading(){
       PopScope(
         canPop: false,
         child: Dialog(
+          backgroundColor: Colors.white,
           child: Container(
             width: 100,
             height: 60,

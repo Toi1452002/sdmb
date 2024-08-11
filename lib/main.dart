@@ -34,6 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navigatorKey = GlobalKey<NavigatorState>();
+    final buttonStyle = ButtonStyle(
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2)
+        ))
+    );
     double scaleText = MediaQuery.textScalerOf(context).scale(1);
 
     return GetMaterialApp(
@@ -73,6 +78,7 @@ class MyApp extends StatelessWidget {
             ),
           backgroundColor: Colors.teal.shade100
         ),
+        dialogBackgroundColor: Colors.white,
         datePickerTheme: DatePickerThemeData(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5)
@@ -87,11 +93,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
         textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5)
-            ))
-          )
+          style: buttonStyle
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: buttonStyle
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: buttonStyle
         )
       ),
       initialRoute: '/login',

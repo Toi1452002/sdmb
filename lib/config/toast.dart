@@ -33,8 +33,9 @@ class FlashToast {
   showAlert(String title, String content,void Function()? onPressed){
     showDialog(context: context,barrierDismissible: false, builder: (_){
       return AlertDialog(
+        backgroundColor: Colors.white,
         contentPadding: const EdgeInsets.only(left: 15,top: 10),
-        actionsPadding: const EdgeInsets.only(top: 20,right: 5),
+        actionsPadding: const EdgeInsets.only(top: 20,right: 5,bottom: 10),
         titlePadding: const EdgeInsets.only(left: 15,top: 15),
         title: Text(title),
         content: Text(content),

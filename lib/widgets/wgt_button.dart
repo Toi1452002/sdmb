@@ -13,12 +13,11 @@ class WgtButton extends StatelessWidget {
     return SizedBox(
       width: width ?? MediaQuery.of(context).size.width,
       height: height,
-      child: ElevatedButton(onPressed: enable ?  onPressed : null,
+      child: FilledButton(onPressed: enable ?  onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor:  color ,
 
           foregroundColor: color == null ? null : Colors.white ,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
         ), child: Text(text),
       ),
     );

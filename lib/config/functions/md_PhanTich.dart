@@ -23,7 +23,7 @@ Future<List<TinPhanTichCTModel>> PhanTichChuoiTin(String ChuoiTin,{int ID_Tin = 
       if (tup_KieuDanh.contains(lstChuoitach[i]) && !tup_KieuDanh.contains(lstChuoitach[i+1])) lsKieuDanh.clear();
       lsKieuDanh.add(lstChuoitach[i]);
       lst_SoDanh.clear(); SoTien=0.0;
-    }else if (isNumeric(lstChuoitach[i])) lst_SoDanh.add(lstChuoitach[i]);
+    }else if (isNumeric(lstChuoitach[i]) && lstChuoitach[i].toString().length>1) lst_SoDanh.add(lstChuoitach[i]);
     else {
       sTienDanh=lstChuoitach[i];
 
@@ -364,7 +364,7 @@ ChuyenTin(String sTin) async {
       else {
         if (sKieu == 'xq') {
           if (x.length == 3) {
-            sSoXien = '.${Tach3con(x)}';
+            sSoXien += '.${Tach3con(x)}';
           }
           else {
             sSoXien += '.$x';
@@ -382,7 +382,8 @@ ChuyenTin(String sTin) async {
 
         else { //neu gap x10k thi khong duoc x he so
           if (x.substring(x.length - 1) == 'k')
-            st = st + XienQuay(strip(sSoXien), LaySoTien(x));
+
+            st = st + XienQuay(strip(sSoXien), LaySoTien(x).replaceAll('.', ','));
           else {
             String sotien = LaySoTien(x);
             int giatri = await db.getCell("GiaTri", "T00_TuyChon", "Ma='xxq'");
@@ -515,7 +516,6 @@ ChuyenTin(String sTin) async {
     }
   }
   st = lstrip(st);
-  // print(LoaiBoDauCham(st));
   return LoaiBoDauCham(st);
 }
 
@@ -541,7 +541,6 @@ Bang_KQSX(String Ngay, int SoCon, SoDuoi, {required List<String> TTgiai, bool so
       s = s.substring(0,SoCon);
     }
 
-    // else print("$s---$SoCon");
     if (isNumeric(s)) lstKQ.add(s);
   }
   return lstKQ;

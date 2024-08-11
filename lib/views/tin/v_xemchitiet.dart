@@ -48,8 +48,8 @@ class VXemChiTiet extends StatelessWidget {
               headingRowColor: const MaterialStatePropertyAll(Colors.white),
               dataRowColor: MaterialStatePropertyAll(Colors.white.withOpacity(.8)),
               horizontalMargin: 12,
-              dataRowHeight: 45,
-              headingRowHeight: 40,
+              dataRowHeight: 35,
+              headingRowHeight: 35,
               empty: XuLyTinController().to.isLoading
                   ? const Column(
                       children: [LinearProgressIndicator()],
@@ -105,10 +105,10 @@ class VXemChiTiet extends StatelessWidget {
                           cells: [
                             DataCell(Text(e.SoDanh)),
                             DataCell(Text(e.MaKieu)),
-                            DataCell(Text(NumberFormat('#,###').format(e.Xac))),
-                            DataCell(Text(NumberFormat('#,###').format(e.Von))),
-                            DataCell(Text(NumberFormat('#,###').format(e.Diem))),
-                            DataCell(Text(NumberFormat('#,###').format(e.Thuong))),
+                            DataCell(Text(e.Xac.toString().formatDouble)),
+                            DataCell(Text(e.Von.toString().formatDouble)),
+                            DataCell(Text(e.Diem.toString().formatDouble)),
+                            DataCell(Text(e.Thuong.toString().formatDouble)),
                           ]))
                   .toList(),
             );

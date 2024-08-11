@@ -38,6 +38,7 @@ class VKqxs extends StatelessWidget {
           IconButton(
               onPressed: () {
                 Get.dialog(Dialog(
+                  backgroundColor: Colors.white,
                   child: Container(
                     width: 100,
                     child: Column(

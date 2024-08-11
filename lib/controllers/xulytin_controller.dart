@@ -130,10 +130,10 @@ class XuLyTinController extends GetxController with ConnectDB{
         kqxs = await getList(table: 'TXL_KQXS',where: "Ngay = '${DateFormat('yyyy-MM-dd').format(_ngayLam.value)}'");
       }
       List<TinPhanTichCTModel> data =  await PhanTichChuoiTin(chuyentin,ID_Tin: _newIDTinNhan!,ID_TinCT: IDTinNhanCT).whenComplete(() {
-        strDiem.value = NumberFormat('#,###').format(fxac);
-        strTien.value = NumberFormat('#,###').format(fvon);
-        strThuong.value = NumberFormat('#,###').format(ftrung);
-        strLaiLo.value = NumberFormat('#,###').format(fvon - ftrung);
+        strDiem.value = fxac.toString().formatDouble;
+        strTien.value = fvon.toString().formatDouble;
+        strThuong.value = ftrung.toString().formatDouble;
+        strLaiLo.value = NumberFormat('#,##0').format(fvon - ftrung);
         completer.complete();
       });
 
@@ -197,10 +197,10 @@ class XuLyTinController extends GetxController with ConnectDB{
     _newIDTinNhan = tinNhanModel.ID;
 
     var data = await getRow(table: 'VBC_TongHop',where: 'ID = ${tinNhanModel.ID}');
-    strDiem.value = NumberFormat('#,###').format(data['Xac']??0);
-    strTien.value = NumberFormat('#,###').format(data['Von']??0);
-    strThuong.value = NumberFormat('#,###').format(data['Thuong']??0);
-    strLaiLo.value = NumberFormat('#,###').format(data['LaiLo']??0);
+    strDiem.value = (data['Xac']??0).toString().formatDouble;
+    strTien.value = (data['Von']??0).toString().formatDouble;
+    strThuong.value =(data['Thuong']??0).toString().formatDouble;
+    strLaiLo.value = (data['LaiLo']??0).toString().formatDouble;
 
   }
 

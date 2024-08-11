@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:sdmb/config/config.dart';
 import 'package:sdmb/config/router.dart';
 import 'package:sdmb/controllers/baocao_controller.dart';
 
@@ -136,9 +137,9 @@ class TableBaoCao extends StatelessWidget {
         child: Container(
           alignment: alignment,
           padding: const EdgeInsets.symmetric(horizontal: 5),
-          height: 40,
+          height: 35,
           child: Text(
-            isNumber ? NumberFormat('#,###').format(text) : text,
+            isNumber ? text.toString().formatDouble : text,
             style: TextStyle(
                 fontSize: 15, fontWeight: FontWeight.w500, color: color),
           ),
@@ -150,9 +151,9 @@ class TableBaoCao extends StatelessWidget {
         child: Container(
           alignment: alignment,
           padding: const EdgeInsets.symmetric(horizontal: 5),
-          height: 40,
+          height: 35,
           child: Text(
-            isNumber ? NumberFormat('#,###').format(text) : text,
+            isNumber ? text.toString().formatDouble : text,
             style: TextStyle(
                 fontSize: 15, fontWeight: FontWeight.w500, color: color),
           ),

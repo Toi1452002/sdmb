@@ -98,6 +98,7 @@ class VXuLyTin extends StatelessWidget {
                       ))),
                 ],
               ),
+              SizedBox(height: 5,),
               Obx(() => WgtTextfield(
                     hint: 'Nhập tin...',
                     controller: controller.txtTinXL,
