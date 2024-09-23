@@ -11,7 +11,8 @@ class VLogin extends StatelessWidget {
   VLogin({super.key});
 
   final controller = Get.put(UserController());
-
+  final txtUserName = TextEditingController();
+  final txtPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,7 +37,7 @@ class VLogin extends StatelessWidget {
                   height: 10,
                 ),
                 WgtTextfield(
-                  controller: controller.txtUsername,
+                  controller: txtUserName,
                   hint: 'Username',
                   icon: Icons.person,
                 ),
@@ -44,7 +45,7 @@ class VLogin extends StatelessWidget {
                   height: 10,
                 ),
                 WgtTextfield(
-                  controller: controller.txtPassword,
+                  controller: txtPassword,
                   hint: 'Password',
                   icon: Icons.lock_rounded,
                   obscureText: true,
@@ -55,7 +56,7 @@ class VLogin extends StatelessWidget {
                 WgtButton(
                   text: 'Đăng nhập',
                   onPressed: () {
-                    controller.onLogin(context);
+                    controller.onLogin(txtUserName.text, txtPassword.text,context);
                   },
                 ),
                 SizedBox(height: 5),

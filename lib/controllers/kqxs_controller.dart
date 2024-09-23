@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,11 @@ import 'package:sdmb/config/functions/md_laykqxs.dart';
 import 'package:sdmb/config/toast.dart';
 import 'package:sdmb/models/kqxs_model.dart';
 
+import '../config/database/auth_data.dart';
 import '../config/database/connect_dbw.dart';
 import '../config/extension.dart';
 import '../config/info_app.dart';
+import '../models/info_user.dart';
 
 
 class KqxsController extends GetxController{
@@ -55,24 +58,35 @@ class KqxsController extends GetxController{
 
 
   Future<void> onLoadKqxs(DateTime ngay) async{
+    _isLoading.value = true;
+    final iUser = infoUser.value;
+    final auth = AuthData();
     if(!await hasNetwork()){
       Get.snackbar('Thông báo', 'Không có mạng',backgroundColor: Colors.black.withOpacity(.7),colorText: Colors.white);
+      String ngayHH = await auth.getNgayHetHan();
+      infoUser.value.soNgayCon = auth.getSoNgayConLai(ngayHH);
       return;
-    }
-    _isLoading.value = true;
-    ///Xét ngày làm việc
-    var userweb = await dbw.loadRow(tblName: 'KHACH_SD', condition: "MaKH = '$MAKH' AND DaXoa = 0");
-    if(userweb.isNotEmpty){
-      // print(userweb);
-      String ngaylam = DateFormat('yyyy-MM-dd').format(DateTime.now());
-      DateTime ngayhethan = DateTime.parse(userweb['NgayHetHan']);
-      await dbw.updateData(sql: "UPDATE KHACH_SD SET NgayLamViec = '$ngaylam' WHERE MaKH = '${userweb['MaKH']}'");
+    }else{
+      try{
+        final rps = await auth.xacThuc(iUser.maKichHoat);
+        if(rps.statusCode == 200){
+          final data = jsonDecode(rps.data);
+          if(data!=false){
+            print(data);
+            await auth.updateNgayHetHan(data['NgayHetHan']);
 
-      SONGAYHETHAN = ngayhethan.difference(DateTime.parse(ngaylam)).inDays;
-      NGAYHETHAN = ngayhethan;
-    }else if(MAKH=='Admin'){
-      SONGAYHETHAN = 1;
-      NGAYHETHAN = DateTime.now();
+            infoUser.value = InfoUser(
+                maHD: int.parse(data['ID']),
+                ngayHetHan: data['NgayHetHan'],
+                soNgayCon: auth.getSoNgayConLai(data['NgayHetHan']),
+                maKichHoat: iUser.maKichHoat,
+                userName: iUser.userName
+            );
+          }
+        }
+      }catch(e){
+        throw Exception(e);
+      }
     }
     ///
 

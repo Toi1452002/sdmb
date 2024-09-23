@@ -22,16 +22,19 @@ class WgtDrawer extends StatelessWidget {
             color: Colors.teal.shade200,
             alignment: Alignment.bottomLeft,
             padding: EdgeInsets.all(8),
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(color: Colors.black),
-                children: [
-                  TextSpan(text: 'Mã: $MAKH\n'),
-                  TextSpan(text: 'Ngày hết hạn: ${DateFormat('dd/MM/yyyy').format(NGAYHETHAN)} (Còn $SONGAYHETHAN)' ),
-                  // TextSpan(text: '\nPhiên bản: $APP_VERSION'),
-                ]
-              ),
-            ),
+            child: Obx((){
+              final iUser = infoUser.value;
+              return RichText(
+                text: TextSpan(
+                    style: TextStyle(color: Colors.black),
+                    children: [
+                      TextSpan(text: 'Mã HD: ${iUser.maHD}\n'),
+                      TextSpan(text: 'Ngày hết hạn: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(iUser.ngayHetHan))} (Còn ${iUser.soNgayCon})' ),
+                      // TextSpan(text: '\nPhiên bản: $APP_VERSION'),
+                    ]
+                ),
+              );
+            }),
           ),
           ListTile(
             onTap: ()=>Get.toNamed(vKhach),

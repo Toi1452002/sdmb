@@ -80,7 +80,7 @@ class XuLyTinController extends GetxController with ConnectDB{
 
 
   onKiemLoi(BuildContext context)async{
-    if(SONGAYHETHAN<0) {FlashToast(context).showInfo('App đã hết hạn');return;}
+    if(infoUser.value.soNgayCon<1) {FlashToast(context).showInfo('App đã hết hạn');return;}
     if(txtTinXL.text.isEmpty){FlashToast(context).showInfo('Chưa có tin');return;}
 
     try{
