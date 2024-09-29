@@ -17,7 +17,7 @@ class AuthData{
             table: 'TXL_NgayLamViec',
             where:
                 "ID = 1");
-        return maKichHoat.isNotEmpty ? maKichHoat['MaKichHoat'] : '';
+        return maKichHoat.isNotEmpty ? maKichHoat['MaKichHoat'] : 'empty';
   }
 
   Future<String> getNgayHetHan() async{

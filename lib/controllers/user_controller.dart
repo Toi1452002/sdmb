@@ -167,6 +167,11 @@ class UserController extends GetxController {
       String maKichHoat = await _authData.checkLogin(userName, passWord);
 
 
+      if(maKichHoat == 'empty'){
+        closeLoading();
+        FlashToast(context).showInfo("Đăng nhập thất bại");
+        return;
+      }
 
       if(maKichHoat == ''){
         closeLoading();
